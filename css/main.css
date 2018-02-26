@@ -1,0 +1,23 @@
+input+span {
+  padding-right: 30px;
+}
+
+/*+++++++++++++++ Vaidacion de datos Correctos +++++++++++++ */
+
+.success {
+  border: 2px solid green;
+}
+
+/* Se valida los datos y Si son correctos en el navegador aparece una paloma */
+
+.success:valid+span:after {
+  position: absolute;
+  content: '✓';
+  padding-left: 5px;
+}
+
+/*+++++++++++++++ Vaidacion de datos Incorrectos +++++++++++++ */
+
+.error {
+  border: 2px solid red;
+}
