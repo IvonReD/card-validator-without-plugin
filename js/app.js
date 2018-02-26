@@ -27,11 +27,13 @@ const functionNumCard = element => {
       console.log('La tarjeta es valida');
       element.className = "success";
       console.log("Dato Correcto");
+      return true;
     }
     if (sum % 10 !== 0) {                                               //Si el módulo 10 de la suma es no igual a cero tarjeta invalida
       console.log('La tarjeta no es valida');
       element.className = "error";
       console.log("Dato Incorrecto");
+      return false;
     }
   }
 }
@@ -48,9 +50,11 @@ const functionMonth = element => {
     valueMonth < 01 || valueMonth > 12) { //Esta Linea especifica que no puede ingresar numero negativo ni caracteres especiales
     element.className = "error";
     console.log("Dato Incorrecto");
+    return false;
   } else {
     element.className = "success";
     console.log("Dato Correcto");
+    return true;
   }
 }
 
@@ -62,9 +66,11 @@ const functionYear = element => {
     valueYear < 17 || valueYear > 30) {
     element.className = "error";
     console.log("Dato Incorrecto");
+    return false;
   } else {
     element.className = "success";
-    console.log("Dato Correcto")
+    console.log("Dato Correcto");
+    return true;
   }
 }
 
@@ -74,10 +80,12 @@ const functionCvv = element => {
   let valueCvv = element.value; // valor del input CVV
   if (valueCvv > 000) { // condicion donde solo se ingresa 3 digitos inluyendo 0 al inicio
     element.className = "success";
-    console.log("Dato Correcto")
+    console.log("Dato Correcto");
+    return true;
   } else {
     element.className = "error";
     console.log("Dato Incorrecto");
+    return false;
   }
 }
 
@@ -90,9 +98,11 @@ const functionNameUser = element => {
   if (userName == "" || userName.search(patron) || userName < 30 === true) {
     element.className = "error";
     console.log("Dato Incorrecto");
+    return false;
   } else {
     element.className = "success";
     console.log("Dato Correcto");
+    return true;
   }
 }
 
@@ -112,7 +122,18 @@ const validateCardDetails = element => { //element sera el form completo
   functionYear(expirationYear);
   functionCvv(cvv);
   functionNameUser(userName);
+
+ /* Bloque donde valida todos los Inputs del formulario */
+  if (functionNumCard(cardNumber) == true && functionMonth(expirationMonth) == true &&
+  functionYear(expirationYear) == true && functionCvv(cvv) == true && functionNameUser(userName) ==true) {
+    return true;
+  }else{
+    return false;
+  }
 }
+
+
+
 
 /* +++++++++++++++++ Se denota el evento  +++++++++++++++++++*/
 const form = document.querySelector("form");
